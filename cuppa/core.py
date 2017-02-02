@@ -286,8 +286,8 @@ class CuppaEnvironment(collections.MutableMapping):
 
     @classmethod
     def add_tools( cls, tools ):
-        cls._tools.append( tools )
-
+        assert(isinstance(tools, list))
+        cls._tools.extend( tools )
 
     @classmethod
     def tools( cls ):
