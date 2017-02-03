@@ -535,7 +535,8 @@ class Construct(object):
                   default_runner       = None,
                   configure_callback   = None,
                   dependencies         = {},
-                  tools                = [] ):
+                  tools                = [],
+                  profiles             = {}):
 
         set_base_options()
         initialise_logging()
@@ -607,7 +608,7 @@ class Construct(object):
         cuppa_env['dependencies']         = {}
         cuppa_env['default_profiles']     = default_profiles and default_profiles or []
         cuppa_env['BUILD_PROFILE']        = cuppa_env['default_profiles']
-        cuppa_env['profiles']             = {}
+        cuppa_env['profiles']             = profiles
 
         test_runner = cuppa_env.get_option( 'runner', default=default_runner and default_runner or 'process' )
         cuppa_env['default_runner']  = test_runner
