@@ -57,7 +57,8 @@ class Clang(object):
         command = "{} --version".format( cxx )
         if command_available( command ):
             reported_version = Popen( shlex.split( command ), stdout=PIPE).communicate()[0]
-            version = re.search( r'based on LLVM (\d)\.(\d)', reported_version )
+            #version = re.search( r'based on LLVM (\d)\.(\d)', reported_version )
+            version = re.search( r'Apple LLVM version (\d)\.(\d)', reported_version )
             if not version:
                 version = re.search( r'clang version (\d)\.(\d+)', reported_version )
             reported_version = 'clang' + version.expand(r'\1\2')
