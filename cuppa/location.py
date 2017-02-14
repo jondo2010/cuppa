@@ -191,7 +191,6 @@ class Location(object):
         if not pip.download.is_url( location ):
 
             if pip.download.is_archive_file( location ):
-
                 local_folder = self.folder_name_from_path( location )
                 local_directory = os.path.join( base, local_folder )
 
@@ -204,7 +203,7 @@ class Location(object):
                 self.extract( location, local_directory )
             else:
                 local_directory = branch and os.path.join( location, branch ) or location
-                return local_directory, False
+                return local_directory, True
         else:
 
             local_folder = self.folder_name_from_path( full_url )

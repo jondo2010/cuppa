@@ -29,6 +29,7 @@ class base(object):
     _default_sys_include = None
     _includes = None
     _sys_includes = None
+    _extra_sub_path = None
 
     @classmethod
     def add_options( cls, add_option ):
@@ -80,7 +81,7 @@ class base(object):
             location = location_id[0]
             branch = location_id[1]
             try:
-                cls._cached_locations[location_id] = cuppa.location.Location( env, location, branch )
+                cls._cached_locations[location_id] = cuppa.location.Location( env, location, branch, cls._extra_sub_path)
             except cuppa.location.LocationException as error:
                 logger.error(
                         "Could not get location for [{}] at [{}] with branch [{}]. Failed with error [{}]"
@@ -156,8 +157,8 @@ class base(object):
         return self._location.revisions()
 
 
-def location_dependency( name, include=None, sys_include=None ):
-    return type( 'BuildWith' + name.title(), ( base, ), { '_name': name, '_default_include': include, '_default_sys_include': sys_include } )
+def location_dependency( name, include=None, sys_include=None, extra_sub_path=None ):
+    return type( 'BuildWith' + name.title(), ( base, ), { '_name': name, '_default_include': include, '_default_sys_include': sys_include, '_extra_sub_path': extra_sub_path } )
 
 
 
