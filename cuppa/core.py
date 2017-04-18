@@ -598,7 +598,7 @@ class Construct(object):
         cuppa_env['download_root'] = os.path.normpath( os.path.expanduser( download_root ) )
 
         cache_root = cuppa_env.get_option( 'cache_root', default='~/_cuppa/_cache' )
-        cuppa_env['cache_root'] = os.path.normpath( os.path.expanduser( cache_root ) )
+        cuppa_env['cache_root'] = os.path.abspath( os.path.normpath( os.path.expanduser( cache_root) ) )
         if not os.path.exists( cuppa_env['cache_root'] ):
             os.makedirs( cuppa_env['cache_root'] )
 
